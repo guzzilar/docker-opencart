@@ -1,0 +1,12 @@
+{
+  "name": "guzzilar/docker-opencart",
+  "description": "Docker for OpenCart",
+  "keywords": ["guzzilar", "docker", "opencart"],
+  "license": "MIT",
+  "require": {
+    "php": ">=5.5.9"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.0"
+  }
+}
