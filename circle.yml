@@ -9,9 +9,8 @@ dependencies:
   override:
     - docker info
     - docker --version
-    - docker images
     - docker build -t guzzilar/docker-opencart .
 
 test:
   override:
-    - docker run --name docker-opencart -it guzzilar/docker-opencart
+    - docker run --name docker-opencart -p 80:80 guzzilar/docker-opencart
