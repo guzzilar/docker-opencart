@@ -8,7 +8,9 @@ services:
     depends_on:
       - opencart1564_db
     entrypoint: ./wait-for-it.sh opencart1564_db:3306
-    
+    volumes:
+      - .:/var/www/html/opencart-1.5.6.4
+
   opencart1564_db:
     image: mysql
     environment:
