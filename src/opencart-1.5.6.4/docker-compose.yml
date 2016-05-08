@@ -1,0 +1,16 @@
+version: '2'
+services:
+  opencart1564:
+    build: .
+    command: -- ./opencart-1.5.6.4-install.sh
+    ports:
+      - "80:80"
+    depends_on:
+      - opencart1564_db
+    entrypoint: ./wait-for-it.sh opencart1564_db:3306
+    
+  opencart1564_db:
+    image: mysql
+    environment:
+      MYSQL_DATABASE: opencart1564_db
+      MYSQL_ROOT_PASSWORD: root
