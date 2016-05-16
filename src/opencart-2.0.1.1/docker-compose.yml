@@ -1,0 +1,18 @@
+version: '2'
+services:
+  opencart2011:
+    build: .
+    command: -- ./opencart-2.0.1.1-install.sh
+    ports:
+      - "80:80"
+    depends_on:
+      - opencart2011_db
+    entrypoint: ./wait-for-it.sh opencart2011_db:3306
+    volumes:
+      - .:/var/www/html/opencart-2.0.1.1
+
+  opencart2011_db:
+    image: mysql
+    environment:
+      MYSQL_DATABASE: opencart2011_db
+      MYSQL_ROOT_PASSWORD: root
