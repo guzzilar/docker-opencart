@@ -4,6 +4,7 @@ In order to install OpenCart 1.5.6.4, just run the following command.
 
 ### Version Supported
 - OpenCart 1.5.6.4 
+- OpenCart 2.0.1.1
 
 ### System Specification
 - Admin account: `user: admin`, `password: admin`
