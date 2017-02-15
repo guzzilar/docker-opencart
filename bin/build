@@ -1,0 +1,54 @@
+#!/bin/bash
+
+target_version=""
+auto_open_browser=false
+
+while test $# -gt 0; do
+    case "$1" in
+        -h|--help*)
+            echo -e 'usage: build [--target=<version>]'
+            echo -e ''
+            echo -e 'To build the specific version, please use the following command.'
+            echo -e '  --target\tSpecify the target version that you want to build'
+            echo -e ''
+            echo -e 'The following versions are the version that this Docker supported'
+            echo -e '  2.3.0.2'
+            echo -e '  2.2.0.0'
+            echo -e '  2.1.0.2'
+            echo -e '  2.0.3.1'
+            echo -e '  2.0.1.1'
+            echo -e '  1.5.6.4'
+            shift
+            ;;
+
+        --target*)
+            target_version=`echo $1 | sed -e 's/^[^=]*=//g'`
+            shift
+            ;;
+
+        --open-browser)
+            auto_open_browser=true
+            shift
+            ;;
+
+        *)
+            shift
+            ;;
+    esac
+done
+
+build() {
+    docker-compose -f ./src/$1/docker-compose.yml stop
+    docker-compose -f ./src/$1/docker-compose.yml rm -f php
+    docker-compose -f ./src/$1/docker-compose.yml rm -f mysql
+
+    docker-compose -f ./src/$1/docker-compose.yml up --build
+
+    [ $2 = true ] && {
+        open http://$(docker-machine ip)/$1
+    }
+}
+
+[[ -n $target_version ]] && { 
+    build $target_version $auto_open_browser
+}
