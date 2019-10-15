@@ -1,6 +1,6 @@
 # docker-opencart
 In order to install OpenCart 1.5.6.4, just run the following command.  
-`docker-compose -f ./src/opencart-1.5.6.4/docker-compose.yml up`
+`docker-compose -f ./src/1.5.6.4/docker-compose.yml up`
 
 ### Version Supported
 - OpenCart 1.5.6.4 
